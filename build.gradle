@@ -1,10 +1,11 @@
 plugins {
     id 'java'
-    id 'com.brightsparklabs.gradle.baseline' version '0.2.0'
+    id 'application'
 }
 
 group 'org.example'
 version '1.0-SNAPSHOT'
+mainClassName = 'com.adam.testproject.Main'
 
 repositories {
     mavenCentral()
@@ -12,4 +13,5 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'com.opencsv', name: 'opencsv', version: '4.0'
 }
