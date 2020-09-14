@@ -7,27 +7,23 @@
 
 package com.adam.testproject;
 
-import com.opencsv.bean.CsvToBeanBuilder;
+import com.opencsv.CSVReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 public class Main {
-    public static void Main(String[] args) {
-        //        System.out.println("Hello, world!");
-        //        try (BufferedReader reader =
-        //                Files.newBufferedReader(Paths.get("book.csv"), Charset.defaultCharset()))
-        // {
-        //            String line;
-        //            while ((line = reader.readLine()) != null) {
-        //                String[] values = line.split(",");
-        //                System.out.println(values[1]);
-        //            }
-        //        } catch (IOException e) {
-        //            e.printStackTrace();
-        //        }
-
-        List<MyBean> beans =
-                new CsvToBeanBuilder(FileReader("yourfile.csv"))
-                        .withType(Visitors.class)
-                        .build()
-                        .parse();
+    public static void main(String[] args) {
+        System.out.println("Hello, world!");
+        var fName = "/home/adam/Downloads/data.csv";
+        try (var fReader = new FileReader(fName, StandardCharsets.UTF_8);
+                var reader = new CSVReader(fReader)) {
+            String[] nextLine;
+            while ((nextLine = reader.readNext()) != null) {
+                System.out.println(nextLine[1] + " " + nextLine[2]);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
